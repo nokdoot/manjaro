@@ -67,3 +67,9 @@ export HISTCONTROL="ignoredups"
 
 # i3
 # i3 폴더말고 config_... 에 있는 config 를 사용하자.
+
+# printer
+cups
+cups 를 서비스에 등록해야하는지 알아서 등록되는지 확인.
+삼성프린터드라이버 sh 파일로 설치.
+localhost:631 에 들어가서 프린터 등록 m2020
