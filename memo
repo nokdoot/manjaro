@@ -40,6 +40,7 @@ sudo pacman -S xviewer
 
 sudo pacman -S extra/jdk11-openjdk extra/openjdk11-doc extra/openjdk11-src
 
+# gitkraken ...
 sudo pacman -S snapd
 sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
