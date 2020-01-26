@@ -74,3 +74,11 @@ cups
 cups 를 서비스에 등록해야하는지 알아서 등록되는지 확인.
 삼성프린터드라이버 sh 파일로 설치.
 localhost:631 에 들어가서 프린터 등록 m2020
+
+# 노트북에서 No battery 가 뜬다면 
+# /sys/class/power_supply/ 에 BAT0 같은 배터리가 없다는 것임
+# upower -d 를 통해 배터리가 어떤 이름으로 등록되어 있는지 확인, 그램의 경우 CMB0 이었음
+
+i3statas.conf 파일 battery 옵션부분에
+path="/sys/class/power_supply/CMB%d/uevent"
+를 추가
