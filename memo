@@ -82,3 +82,9 @@ localhost:631 에 들어가서 프린터 등록 m2020
 i3statas.conf 파일 battery 옵션부분에
 path="/sys/class/power_supply/CMB%d/uevent"
 를 추가
+
+rm /etc/localtime 해보고 시간이 바뀌는지 보자
+ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+정 안되면
+https://wiki.archlinux.org/index.php/Installation_guide_(%ED%95%9C%EA%B5%AD%EC%96%B4)#%EC%8B%9C%EA%B0%84%EB%8C%80
+참고
