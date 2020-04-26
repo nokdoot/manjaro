@@ -14,6 +14,8 @@ sudo pacman -S firefox
 
 install_pulse
 
+sudo pacman -S git bash-completion
+
 sudo pacman -S uim
 
 # 두 번째 줄에서 host, guest 를 위한 module 을 설치할 때 종류가 되게 많은데 숫자는 현재 리눅스 커널버전을 의미한
@@ -23,7 +25,8 @@ sudo pacman -S community/virtualbox community/virtualbox-guest-dkms community/vi
 sudo pacman -S extra/linux52-virtualbox-guest-modules extra/linux52-virtualbox-host-modules
 # modprobe 를 해야하는거 같은데 일단 실행해보고 안되면 찾아보기.
 
-
+# 그래픽 드라이버가 어떤게 설치되었나 확인.
+mhwd -li 
 sudo mhwd --remove pci video-linux
 sudo mhwd --install pci video-vesa
 
@@ -34,6 +37,8 @@ sudo pacman -S extra/noto-fonts extra/noto-fonts-cjk extra/noto-fonts-emoji
 sudo pacman -S xreader
 
 sudo pacman -S xviewer
+
+sudo pacman -S 
 
 # idea to dmenu
 # sudo ln -s ~/....idea.sh /bin/idea
