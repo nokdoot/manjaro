@@ -93,5 +93,6 @@ https://wiki.archlinux.org/index.php/Installation_guide_(%ED%95%9C%EA%B5%AD%EC%9
 참고
 
 "source \"$HOME/.profile\"" >> ~/.bashrc
+# 터미널 새탭과 비슷한 효과
 "source \"/etc/profile.d/vte.sh\"" >> ~/.bashrc
 

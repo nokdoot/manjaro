@@ -66,6 +66,9 @@ nnoremap <c-s-j> ddp
 
 " 탭이 열리며 새 파일을 선택하는 화면이 나옴
 nnoremap <silent> <c-s-n> :tabnew <bar> Exp<cr>
+
+" 탭이 열리게 바꿔야함.
+" nnoremap <silent> <c-s-n> :Exp<cr>
 " 새탭 + 터미널
 " nnoremap <c-s-t> :tab terminal<cr>
 
@@ -122,13 +125,18 @@ inoremap <c-d> <esc>dd
 
 " autocmd {{{
 
-" Commenting blocks of code.
-autocmd FileType c,cpp,java,scala,js    let b:comment_leader = '// '
-autocmd FileType perl,sh,ruby,python    let b:comment_leader = '# '
-autocmd FileType conf,fstab             let b:comment_leader = '# '
-autocmd FileType tex                    let b:comment_leader = '% '
-autocmd FileType mail                   let b:comment_leader = '> '
-autocmd FileType vim                    let b:comment_leader = '" '
+" Commenting blocks of code. {{{
+autocmd FileType c,cpp,java,scala,js                let b:comment_leader = '// '
+autocmd FileType perl,sh,ruby,python,conf,fstab     let b:comment_leader = '# '
+autocmd FileType conf,fstab                         let b:comment_leader = '# '
+autocmd FileType tex                                let b:comment_leader = '% '
+autocmd FileType mail                               let b:comment_leader = '> '
+autocmd FileType vim                                let b:comment_leader = '" '
+" }}}
+
+" run script {{{
+autocmd FileType perl nnoremap <leader>rs :! perl %<cr>
+" }}}
 
 " }}}
 
