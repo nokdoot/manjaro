@@ -9,6 +9,8 @@ sudo pacman -S flameshot
 sudo pacman -Rs palemoon-bin
 
 sudo pacman -S firefox
+# about:config에서 
+layout.css.devPixelsPerPx 값을 1.4로 지정 (전체크기를 1.4배로 증가시킴)
 
 install_pulse
 
