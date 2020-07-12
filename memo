@@ -21,8 +21,8 @@ sudo pacman -S git bash-completion
 
 sudo pacman -S uim
 
+# gitk를 설치하자
 sudo pacman -S tk
-sudo pacman -S gitk
 
 # 두 번째 줄에서 host, guest 를 위한 module 을 설치할 때 종류가 되게 많은데 숫자는 현재 리눅스 커널버전을 의미한
 # 이것을 설치할 당시에는 만자로 커널은 5.2.11...였으며 community 의 52 버박 모듈버전은 5.2.10 버전을 위한 것이었음
