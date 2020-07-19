@@ -104,3 +104,10 @@ https://wiki.archlinux.org/index.php/Installation_guide_(%ED%95%9C%EA%B5%AD%EC%9
 # 터미널 새탭과 비슷한 효과
 "source \"/etc/profile.d/vte.sh\"" >> ~/.bashrc
 
+
+# docker
+sudo pacman -S community/docker
+systemctl enable docker
+systemctl start docker
+sudo usermod -aG docker $USER
+newgrp docker
