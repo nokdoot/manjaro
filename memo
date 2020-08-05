@@ -111,3 +111,20 @@ systemctl enable docker
 systemctl start docker
 sudo usermod -aG docker $USER
 newgrp docker
+
+# chrome
+git clone https://aur.archlinux.org/google-chrome.git
+cd google-chrome
+makepkg -s
+sudo pacman -U google-chrome*.tar.xz
+
+
+# branch to terminal
+# .bashrc 파일의 PS1 환경변수에 다음을 추가.
+\[\033[33m\]$(parse_git_branch)\[\033[00m\]
+
+이 함수도 추가.
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
