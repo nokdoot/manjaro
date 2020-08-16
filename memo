@@ -4,25 +4,25 @@ sudo pacman -Syu
 
 git clone https://github.com/nokdoot/config_arch
 
-sudo pacman -S xclip
-sudo pacman -S flameshot
-sudo pacman -Rs palemoon-bin
+yes | sudo pacman -S xclip
+yes | sudo pacman -S flameshot
+yes | sudo pacman -Rs palemoon-bin
 
 # 배터리관리 gui
-pamac install tlpui
+yes | pamac install tlpui
 
-sudo pacman -S firefox
+yes | sudo pacman -S firefox
 # about:config에서 
 layout.css.devPixelsPerPx 값을 1.4로 지정 (전체크기를 1.4배로 증가시킴)
 
 install_pulse
 
-sudo pacman -S git bash-completion
+yes | sudo pacman -S git bash-completion
 
-sudo pacman -S uim
+yes | sudo pacman -S uim
 
 # gitk를 설치하자
-sudo pacman -S tk
+yes | sudo pacman -S tk
 
 # 두 번째 줄에서 host, guest 를 위한 module 을 설치할 때 종류가 되게 많은데 숫자는 현재 리눅스 커널버전을 의미한
 # 이것을 설치할 당시에는 만자로 커널은 5.2.11...였으며 community 의 52 버박 모듈버전은 5.2.10 버전을 위한 것이었음
@@ -36,20 +36,18 @@ mhwd -li
 sudo mhwd --remove pci video-linux
 sudo mhwd --install pci video-vesa
 
-sudo pacman -S clementine
+yes | sudo pacman -S clementine
 
-sudo pacman -S extra/noto-fonts extra/noto-fonts-cjk extra/noto-fonts-emoji
+yes | sudo pacman -S extra/noto-fonts extra/noto-fonts-cjk extra/noto-fonts-emoji
 
-sudo pacman -S xreader
+yes | sudo pacman -S xreader
 
-sudo pacman -S xviewer
-
-sudo pacman -S 
+yes | sudo pacman -S xviewer
 
 # idea to dmenu
 # sudo ln -s ~/....idea.sh /bin/idea
 
-sudo pacman -S extra/jdk11-openjdk extra/openjdk11-doc extra/openjdk11-src
+yes | sudo pacman -S extra/jdk11-openjdk extra/openjdk11-doc extra/openjdk11-src
 
 # gitkraken ...
 sudo pacman -S snapd
@@ -75,7 +73,7 @@ sudo ntfs-3g /dev/장치 경로
 
 # 터미널에서 중복되는 명령어 합치기
 # ~/.bashrc
-export HISTCONTROL="ignoredups"
+echo 'export HISTCONTROL="ignoredups"' >> ~/.bashrc
 
 # i3
 # i3 폴더말고 config_... 에 있는 config 를 사용하자.
@@ -100,13 +98,13 @@ ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 https://wiki.archlinux.org/index.php/Installation_guide_(%ED%95%9C%EA%B5%AD%EC%96%B4)#%EC%8B%9C%EA%B0%84%EB%8C%80
 참고
 
-"source \"$HOME/.profile\"" >> ~/.bashrc
+echo "source \"$HOME/.profile\"" >> ~/.bashrc
 # 터미널 새탭과 비슷한 효과
-"source \"/etc/profile.d/vte.sh\"" >> ~/.bashrc
+echo "source \"/etc/profile.d/vte.sh\"" >> ~/.bashrc
 
 
 # docker
-sudo pacman -S community/docker
+yes | sudo pacman -S community/docker
 systemctl enable docker
 systemctl start docker
 sudo usermod -aG docker $USER
@@ -125,6 +123,7 @@ sudo pacman -U google-chrome*.tar.xz
 
 포맷전에는 
 PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \[\033[01;37m\]\w\[\033[01;32m\]]\[\033[33m\]$(parse_git_branch)\[\033[01;32m\]\$\[\033[00m\] '
+
 를 썼음.
 
 이 함수도 추가.
