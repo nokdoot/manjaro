@@ -2,11 +2,12 @@ sudo pacman-mirrors --country South_Korea
 
 sudo pacman -Syu
 
-git clone https://github.com/nokdoot/config_arch
-
 yes | sudo pacman -S xclip
 yes | sudo pacman -S flameshot
 yes | sudo pacman -Rs palemoon-bin
+
+yes | sudo pacman -S community/redshift
+# redshift-gtk -> right click -> autostart
 
 # 배터리관리 gui
 yes | pamac install tlpui
@@ -21,7 +22,11 @@ yes | sudo pacman -S git bash-completion
 
 yes | sudo pacman -S uim
 
-# gitk를 설치하자
+# 설치 후 추가 커맨드 필요!
+yes | sudo pacman -S community/libinput-gestures
+
+# gitk
+# tk 만 설치하면 gitk 는 알아서 추가되드라. 안되면 설치를 찾아보자. 
 yes | sudo pacman -S tk
 
 # 두 번째 줄에서 host, guest 를 위한 module 을 설치할 때 종류가 되게 많은데 숫자는 현재 리눅스 커널버전을 의미한
@@ -32,6 +37,7 @@ sudo pacman -S extra/linux52-virtualbox-guest-modules extra/linux52-virtualbox-h
 # modprobe 를 해야하는거 같은데 일단 실행해보고 안되면 찾아보기.
 
 # 그래픽 드라이버가 어떤게 설치되었나 확인.
+# 그래픽 드리이버는 딱히 문제가 되지 않는다면 건드리지 말자.
 mhwd -li 
 sudo mhwd --remove pci video-linux
 sudo mhwd --install pci video-vesa
@@ -48,12 +54,6 @@ yes | sudo pacman -S xviewer
 # sudo ln -s ~/....idea.sh /bin/idea
 
 yes | sudo pacman -S extra/jdk11-openjdk extra/openjdk11-doc extra/openjdk11-src
-
-# gitkraken ...
-sudo pacman -S snapd
-sudo systemctl enable --now snapd.socket
-sudo ln -s /var/lib/snapd/snap /snap
-sudo snap install gitkraken
 
 sudo pacman -S mysql
 mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
@@ -117,7 +117,7 @@ makepkg -s
 sudo pacman -U google-chrome*.tar.xz
 
 
-# branch to terminal
+# branch name to terminal
 # .bashrc 파일의 PS1 환경변수에 다음을 추가.
 \[\033[33m\]$(parse_git_branch)\[\033[00m\]
 
