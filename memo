@@ -8,9 +8,16 @@ yes | sudo pacman -Rs palemoon-bin
 
 yes | sudo pacman -S community/redshift
 # redshift-gtk -> right click -> autostart
+# .config/autostart/redshift-gtk.desktop
+redshift-gtk -t 4000:4000 -b 1.0:0.9
+
 
 # 배터리관리 gui
 yes | pamac install tlpui
+
+# 노트북 뚜껑 닫을때 배터리 관리
+# sudo vi /etc/systemd/logind.conf
+# HandleLidSwitch= 값을 hibernate로 놓자
 
 yes | sudo pacman -S firefox
 # about:config에서 
