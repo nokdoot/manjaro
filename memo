@@ -11,6 +11,8 @@ yes | sudo pacman -S community/redshift
 # .config/autostart/redshift-gtk.desktop
 redshift-gtk -t 4000:4000 -b 1.0:0.9
 
+# 키 반복입력 속도, 각각 반복 시작 딜레이, 속도
+xset r rate 280 30
 
 # 배터리관리 gui
 yes | pamac install tlpui
