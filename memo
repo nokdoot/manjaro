@@ -2,6 +2,11 @@ sudo pacman-mirrors --country South_Korea
 
 sudo pacman -Syu
 
+# AUR 레포의 프로그램을 인스톨하는 방법
+# git clone
+# makepkg -si # 필요한 dependency 설치와 함께 해당 프로그램 설치
+# 여기에서 dependency가 AUR에 등록된 것이라면 수동으로 설치해줘야함
+
 yes | sudo pacman -S xclip
 yes | sudo pacman -S flameshot
 yes | sudo pacman -Rs palemoon-bin
