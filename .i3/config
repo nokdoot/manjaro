@@ -31,7 +31,7 @@ set $HOME ~
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 15
+Font xft:URWGothic-Book 15
 
 # key repeat
 exec --no-startup-id xset r rate 250 100
@@ -65,8 +65,8 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-##exec --no-startup-id volumeicon
-##bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+###exec --no-startup-id volumeicon
+###bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
@@ -173,6 +173,17 @@ bindsym $mod+Shift+Tab workspace prev
 #                 set $ws2 2:
 
 # switch to workspace
+bindsym $sup+1 workspace "1"
+bindsym $sup+2 workspace "2"
+bindsym $sup+3 workspace "3"
+bindsym $sup+4 workspace "4"
+bindsym $sup+5 workspace "5"
+bindsym $sup+6 workspace "6"
+bindsym $sup+7 workspace "7"
+bindsym $sup+8 workspace "8"
+bindsym $sup+9 workspace "9"
+bindsym $sup+0 workspace "10"
+
 bindsym Control+$mod+1 workspace "1"
 bindsym Control+$mod+2 workspace "2"
 bindsym Control+$mod+3 workspace "3"
@@ -185,6 +196,17 @@ bindsym Control+$mod+9 workspace "9"
 bindsym Control+$mod+0 workspace "10"
 
 # Move focused container to workspace
+bindsym $sup+Shift+1 move container to workspace "1"
+bindsym $sup+Shift+2 move container to workspace "2"
+bindsym $sup+Shift+3 move container to workspace "3"
+bindsym $sup+Shift+4 move container to workspace "4"
+bindsym $sup+Shift+5 move container to workspace "5"
+bindsym $sup+Shift+6 move container to workspace "6"                                   
+bindsym $sup+Shift+7 move container to workspace "7"
+bindsym $sup+Shift+8 move container to workspace "8"
+bindsym $sup+Shift+9 move container to workspace "9"
+bindsym $sup+Shift+0 move container to workspace "10"
+
 bindsym Control+$mod+Shift+1 move container to workspace "1"
 bindsym Control+$mod+Shift+2 move container to workspace "2"
 bindsym Control+$mod+Shift+3 move container to workspace "3"
