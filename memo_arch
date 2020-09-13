@@ -25,6 +25,24 @@ wpa_cli <interface>
 > quit
 
 systemctl start dhcpcd.service
+# enable 안해도 ip address로 ip가 잡힌다면 하지말자. 필요없음
 systemctl enable dhcpcd.service
 
+# 여기까지 진행했으면 인터넷 사용이 가능해지는데,
+# reboot해도 와이파이를 사용하려면 추가 설정이 필요하다.
+# 원래는 위의 두 프로그램을 쓰는 방식이 있지만
+# networkmanager를 사용하면 더 편한 설정이 가능해서 거른다.
 
+pacman -S networkmanager
+
+systemctl enable NetworkManager
+systemctl start NetworkManager
+
+nmcli device wifi list
+nmcli device wifi connect <SSID> password <password>
+
+# 이제 재부팅해도 와이파이가능
+
+
+## update
+pacman -Syu
