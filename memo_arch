@@ -1,0 +1,30 @@
+## wifi
+
+# /etc/wpa_supplicant/wpa_supplicant.conf
+ctrl_interface=/run/wpa_supplicant
+update_config=1
+
+# 실행
+# -B 백그라운드
+# -i <interface> <- 인터페이스는 ip를 쳐서 나오는 wlan0 같은것
+# -c <configuration file>
+wpa_supplicant -B -i <interface> -c /etc/wpa_supplicant/wpa_supplicant.conf
+
+wpa_cli <interface>
+> scan
+> scan_results
+# 결과로 나오는 ssid 확인
+
+> add_network
+0 <- 이 숫자를 사용해야함
+
+> set_network 0 ssid <ssid>
+> set_network 0 psk <password>  # 비밀번호가 없다면 'set_network 0 key_mgmt NONE' 으로 대체
+> enable_network 0
+> save_config
+> quit
+
+systemctl start dhcpcd.service
+systemctl enable dhcpcd.service
+
+
