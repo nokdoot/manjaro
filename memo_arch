@@ -46,3 +46,16 @@ nmcli device wifi connect <SSID> password <password>
 
 ## update
 pacman -Syu
+
+## SSH
+~/.ssh/config 설정으로 편하게! arch ssh 문서 확인하기
+
+## locale
+/etc/locale.gen 수정
+locale-gen 실행
+/etc/locale.conf 생성해서
+LANG=ko_US.UTF-8
+LC_ALL=en_US.UTF-8
+추가.
+재부팅
+
