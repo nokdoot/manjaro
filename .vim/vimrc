@@ -1,45 +1,51 @@
 "파일 위치 : ~/.vim/vimrc
 
-"자연스러운 위아래 커서이동
-set number            " line 표시를 해줍니다.
-set ai                    " auto indent
-set si					" smart indent
-"set cindent            " c style indent
-set shiftwidth=4      " shift를 4칸으로 ( >, >>, <, << 등의 명령어)
-set shiftround
-set tabstop=4         " tab을 4칸으로
-set softtabstop=4
-set expandtab       " tab 대신 띄어쓰기로
-set shiftround      " >> 를 통해서 정렬을 해줄 때 가장 가까운 indent level 로 이동.
-"set ignorecase      " 검색시 대소문자 구별하지않음
-set hlsearch         " 검색시 하이라이트(색상 강조)
-set background=dark  " 검정배경을 사용할 때, (이 색상에 맞춰 문법 하이라이트 색상이 달라집니다.)
-"set nocompatible   " 방향키로 이동가능
-"set fileencodings=utf-8,euc-kr    " 파일인코딩 형식 지정
-set bs=indent,eol,start    " backspace 키 사용 가능
-set history=20    " 명령어에 대한 히스토리를 20개까지
-set ruler              " 상태표시줄에 커서의 위치 표시
-"set nobackup      " 백업파일을 만들지 않음
-set title               " 제목을 표시
-set showmatch      " 매칭되는 괄호를 보여줌
-set matchtime=1    " 매칭되는 괄호를 보여주는 시간 (10 분의 n초)
-"set nowrap         " 자동 줄바꿈 하지 않음
-"set wmnu           " tab 자동완성시 가능한 목록을 보여줌
 syntax on           " 문법 하이라이트 킴
-set scrolloff=8 "search 결과의 위치를 화면 아래에서 8만큼 띄움
-set cursorline      " 현재 커서 위치를 표시
-set laststatus=2    " window 상태창 표시, 1 - window가 2개 이상일 경우 on. 0 - off
-set incsearch       " 단어 검색을 위해 타이핑 할때 하이라이팅
 
-"set mouse=a
-"set clipboard=unnamed
-"set backupcopy=yes
+" set {{{
+"자연스러운 위아래 커서이동
+    set number            " line 표시를 해줍니다.
+    set ai                    " auto indent
+    set si					" smart indent
+"     set cindent            " c style indent
+    set shiftwidth=4      " shift를 4칸으로 ( >, >>, <, << 등의 명령어)
+    set shiftround
+    set tabstop=4         " tab을 4칸으로
+    set softtabstop=4
+    set expandtab       " tab 대신 띄어쓰기로
+    set shiftround      " >> 를 통해서 정렬을 해줄 때 가장 가까운 indent level 로 이동.
+"     set ignorecase      " 검색시 대소문자 구별하지않음
+    set hlsearch         " 검색시 하이라이트(색상 강조)
+    set background=dark  " 검정배경을 사용할 때, (이 색상에 맞춰 문법 하이라이트 색상이 달라집니다.)
+"     set nocompatible   " 방향키로 이동가능
+"     set fileencodings=utf-8,euc-kr    " 파일인코딩 형식 지정
+    set bs=indent,eol,start    " backspace 키 사용 가능
+    set history=20    " 명령어에 대한 히스토리를 20개까지
+    set ruler              " 상태표시줄에 커서의 위치 표시
+"     set nobackup      " 백업파일을 만들지 않음
+    set title               " 제목을 표시
+    set showmatch      " 매칭되는 괄호를 보여줌
+    set matchtime=1    " 매칭되는 괄호를 보여주는 시간 (10 분의 n초)
+"     set nowrap         " 자동 줄바꿈 하지 않음
+"     set wmnu           " tab 자동완성시 가능한 목록을 보여줌
+    set scrolloff=8 "search 결과의 위치를 화면 아래에서 8만큼 띄움
+    set cursorline      " 현재 커서 위치를 표시
+    set laststatus=2    " window 상태창 표시, 1 - window가 2개 이상일 경우 on. 0 - off
+    set incsearch       " 단어 검색을 위해 타이핑 할때 하이라이팅
+"     set mouse=a
+"     set clipboard=unnamed
+"     set backupcopy=yes
+" }}}
+
 
 " 명령어 시작키 추가
 let mapleader = "-"
 
 " localleader 는 굳이 필요한가?
 let maplocalleader = "\\"
+
+" file explorer의 리스팅 방식설정
+let g:netrw_liststyle=3
 
 " Vimscript file setting {{{
 augroup filetype_vim
@@ -49,6 +55,14 @@ augroup END
 " }}}
 
 " nnoremap {{{
+
+" ctags {{{
+"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR> "tab으로 열기
+noremap <C-\>l :vsp <CR>:exec("tag ".expand("<cword>"))<CR><C-W>r
+noremap <C-\>h :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+noremap <C-\>k :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+noremap <C-\>j :sp <CR>:exec("tag ".expand("<cword>"))<CR><C-W>r
+" }}}
 
 " -ev: edit vimrc
 " vimrc 수정
@@ -62,9 +76,12 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " <cr>podcode: enter pod code template
 nnoremap <cr>podcode i=begin html<cr><cr><pre><code class=' hljs'><cr></code></pre><cr><cr>=end html<cr><cr><esc>
 
-" <cr>perl: enter perl template
-nnoremap <cr>perl i#!/usr/bin/env perl<cr><cr>use strict;<cr>use warnings;<cr><cr>
+" <cr>pl: enter perl script template
+nnoremap <cr>pl i#!/usr/bin/env perl<cr><cr>use strict;<cr>use warnings;<cr>use feature qw/ say/;<cr><cr><esc>
 " }}}
+
+" <cr>perl: enter perl module template
+nnoremap <cr>pm i#!/usr/bin/env perl<cr><cr>use strict;<cr>use warnings;<cr>use feature qw/ say/;<cr><cr><esc>
 
 " 보완필요 - 파일 시작과 끝부분에서 애매하게 동작
 " 행 위, 아래로 이동
@@ -84,26 +101,17 @@ nnoremap <leader>ib >i{
 " decrease indents for inner block
 nnoremap <leader>db <i{
 
-" toggling {{{
+" 파일탐색기 열기
+nnoremap <F3> :Lex<CR>
+
 " 라인번호 토글링
 nnoremap <F5> :setlocal number!<CR>
 
 " 하이라이트 토글링
 nnoremap <F6> :setlocal hlsearch!<CR>
 
-" fold 계층 보여주는 화면 토글링 {{{
+" fold 계층 보여주는 화면 토글링
 nnoremap <leader>fdc :call FoldColumnToggle()<cr>
-
-function! FoldColumnToggle()
-    if &foldcolumn
-        setlocal foldcolumn=0
-    else
-        setlocal foldcolumn=4
-    endif
-endfunction
-" }}}
-
-" }}}
 
 nnoremap * :set hlsearch<CR> * <S-n>
 
@@ -122,6 +130,16 @@ noremap <silent> <leader>cx :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 " }}}
+
+
+function! FoldColumnToggle()
+    if &foldcolumn
+        setlocal foldcolumn=0
+    else
+        setlocal foldcolumn=4
+    endif
+endfunction
+
 
 " inoremap {{{
 
@@ -187,12 +205,6 @@ hi markdownBold cterm=bold ctermfg=lightmagenta
 hi markdownBoldItalic cterm=bold,italic ctermfg=lightmagenta
 hi markdownCode ctermbg=darkgreen
 
-"ctags
-"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR> "tab으로 열기
-noremap <C-\>l :vsp <CR>:exec("tag ".expand("<cword>"))<CR><C-W>r
-noremap <C-\>h :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-noremap <C-\>k :sp <CR>:exec("tag ".expand("<cword>"))<CR>
-noremap <C-\>j :sp <CR>:exec("tag ".expand("<cword>"))<CR><C-W>r
 
 "
 
