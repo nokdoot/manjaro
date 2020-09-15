@@ -1,6 +1,6 @@
 "파일 위치 : ~/.vim/vimrc
 
-syntax on           " 문법 하이라이트 킴
+syntax enable           " 문법 하이라이트 킴
 
 " set {{{
 "자연스러운 위아래 커서이동
@@ -19,6 +19,7 @@ syntax on           " 문법 하이라이트 킴
     set background=dark  " 검정배경을 사용할 때, (이 색상에 맞춰 문법 하이라이트 색상이 달라집니다.)
 "     set nocompatible   " 방향키로 이동가능
 "     set fileencodings=utf-8,euc-kr    " 파일인코딩 형식 지정
+    set encoding=utf-8
     set bs=indent,eol,start    " backspace 키 사용 가능
     set history=20    " 명령어에 대한 히스토리를 20개까지
     set ruler              " 상태표시줄에 커서의 위치 표시
@@ -48,7 +49,7 @@ let maplocalleader = "\\"
 let g:netrw_liststyle=3
 
 " file explorer의 크기 지정. 퍼센트값
-let g:netrw_winsize=25
+let g:netrw_winsize=35
 
 " file explorer에서 파일을 열 때 새탭으로 열게됨. :Lex를 중심으로 쓸거라 의미 없을듯
 " let g:netrw_browse_split=3
@@ -108,7 +109,7 @@ nnoremap <leader>ib >i{
 nnoremap <leader>db <i{
 
 " 파일탐색기 열기
-nnoremap <F3> :Lex<CR>
+nnoremap <F3> :Lex<CR>:set wrap<CR>
 
 " 라인번호 토글링
 nnoremap <F5> :setlocal number!<CR>
