@@ -59,3 +59,7 @@ LC_ALL=en_US.UTF-8
 추가.
 재부팅
 
+## ftp
+sudo pacman -S vsftpd
+sudo systemctl enable vsftpd
+sudo systemctl start vsftpd

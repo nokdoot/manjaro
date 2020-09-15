@@ -47,6 +47,12 @@ let maplocalleader = "\\"
 " file explorer의 리스팅 방식설정
 let g:netrw_liststyle=3
 
+" file explorer의 크기 지정. 퍼센트값
+let g:netrw_winsize=25
+
+" file explorer에서 파일을 열 때 새탭으로 열게됨. :Lex를 중심으로 쓸거라 의미 없을듯
+" let g:netrw_browse_split=3
+
 " Vimscript file setting {{{
 augroup filetype_vim
     autocmd!
@@ -151,7 +157,7 @@ inoremap <c-d> <esc>dd
 " autocmd {{{
 
 " autosave
-autocmd TextChanged,TextChangedI * :w
+autocmd TextChanged,TextChangedI <buffer> :w
 
 " Commenting blocks of code. {{{
 autocmd FileType c,cpp,java,scala,js                let b:comment_leader = '// '
