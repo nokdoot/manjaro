@@ -150,6 +150,9 @@ inoremap <c-d> <esc>dd
 
 " autocmd {{{
 
+" autosave
+autocmd TextChanged,TextChangedI * :w
+
 " Commenting blocks of code. {{{
 autocmd FileType c,cpp,java,scala,js                let b:comment_leader = '// '
 autocmd FileType perl,sh,ruby,python,conf,fstab     let b:comment_leader = '# '
@@ -162,6 +165,7 @@ autocmd FileType vim                                let b:comment_leader = '" '
 " run script {{{
 autocmd FileType perl nnoremap <leader>rs :! perl %<cr>
 autocmd FileType sh nnoremap <leader>rs :! sh %<cr>
+autocmd FileType javascript nnoremap <leader>rs :! node %<cr>
 autocmd FileType python nnoremap <leader>rs :! python %<cr>
 " }}}
 
