@@ -33,6 +33,11 @@ syntax enable           " 문법 하이라이트 킴
     set cursorline      " 현재 커서 위치를 표시
     set laststatus=2    " window 상태창 표시, 1 - window가 2개 이상일 경우 on. 0 - off
     set incsearch       " 단어 검색을 위해 타이핑 할때 하이라이팅
+
+" 파일을 닫으면 undo 기록이 모두 사라지는데, 이를 관리하는 파일을 생성한다.
+    set undofile
+    set undodir=~/.vim/undodir
+
 "     set mouse=a
 "     set clipboard=unnamed
 "     set backupcopy=yes
@@ -158,8 +163,7 @@ inoremap <c-d> <esc>dd
 " autocmd {{{
 
 " autosave
-autocmd TextChanged,TextChangedI <buffer> :w
-
+autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
 " Commenting blocks of code. {{{
 autocmd FileType c,cpp,java,scala,js                let b:comment_leader = '// '
 autocmd FileType perl,sh,ruby,python,conf,fstab     let b:comment_leader = '# '
