@@ -12,6 +12,11 @@ sudo pacman -Syu
 # 모니터 gui 제어
 pacman -S arandr
 
+# 노트북 마우스 패드 속도
+xinput
+xinput --list-props 12
+xinput --set-prop 12 305 0.4
+
 yes | sudo pacman -S xclip
 yes | sudo pacman -S flameshot
 yes | sudo pacman -Rs palemoon-bin
