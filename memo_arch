@@ -1,3 +1,8 @@
+## mirror.archlinuxarm.org : The requested URL returned error: 404
+
+# db sync
+pacman -Syy
+
 ## wifi
 
 # /etc/wpa_supplicant/wpa_supplicant.conf
