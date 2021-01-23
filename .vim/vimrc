@@ -41,8 +41,27 @@ syntax enable           " 문법 하이라이트 킴
 "     set mouse=a
 "     set clipboard=unnamed
 "     set backupcopy=yes
+
+execute "set <M-1>=\e1"
+execute "set <M-2>=\e2"
+execute "set <M-3>=\e3"
+execute "set <M-4>=\e4"
+execute "set <M-5>=\e5"
+execute "set <M-6>=\e6"
+execute "set <M-7>=\e7"
+execute "set <M-8>=\e8"
 " }}}
 
+" alt - n {{{
+    noremap <M-1> <esc>1gt
+    noremap <M-2> <esc>2gt
+    noremap <M-3> <esc>3gt
+    noremap <M-4> <esc>4gt
+    noremap <M-5> <esc>5gt
+    noremap <M-6> <esc>6gt
+    noremap <M-7> <esc>7gt
+    noremap <M-8> <esc>8gt
+" }}}
 
 " 명령어 시작키 추가
 let mapleader = "-"
@@ -182,7 +201,7 @@ autocmd FileType python nnoremap <leader>rs :! python %<cr>
 
 " }}}
 
-" *********** operator {{{
+" operator {{{
 
 " GrepOperator 
 " grep 의 결과를 quickfix window 에 넣는다.
@@ -210,6 +229,8 @@ function! s:GrepOperator(type)
 endfunction
 
 " }}}
+
+
 
 " escape HTML tag
 " vnoremap <F5> '<,'>s/

@@ -15,7 +15,8 @@ update_config=1
 # -c <configuration file>
 wpa_supplicant -B -i <interface> -c /etc/wpa_supplicant/wpa_supplicant.conf
 
-wpa_cli <interface>
+## 안되길래 재부팅하고 위에꺼 다시 해보니까 됨.
+wpa_cli -i <interface>
 > scan
 > scan_results
 # 결과로 나오는 ssid 확인
@@ -23,8 +24,8 @@ wpa_cli <interface>
 > add_network
 0 <- 이 숫자를 사용해야함
 
-> set_network 0 ssid <ssid>
-> set_network 0 psk <password>  # 비밀번호가 없다면 'set_network 0 key_mgmt NONE' 으로 대체
+> set_network 0 ssid "<ssid>"
+> set_network 0 psk "<password>"  # 비밀번호가 없다면 'set_network 0 key_mgmt NONE' 으로 대체
 > enable_network 0
 > save_config
 > quit
@@ -43,6 +44,8 @@ pacman -S networkmanager
 systemctl enable NetworkManager
 systemctl start NetworkManager
 
+# 안되면 여기서 재부팅
+
 nmcli device wifi list
 nmcli device wifi connect <SSID> password <password>
 
@@ -56,10 +59,10 @@ pacman -Syu
 ~/.ssh/config 설정으로 편하게! arch ssh 문서 확인하기
 
 ## locale
-/etc/locale.gen 수정
+/etc/locale.gen 수정. # 아래 두 언어 있는지 확인하고 주석을 빼거나 라인 새로 추가
 locale-gen 실행
 /etc/locale.conf 생성해서
-LANG=ko_US.UTF-8
+LANG=ko_KR.UTF-8
 LC_ALL=en_US.UTF-8
 추가.
 재부팅
