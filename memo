@@ -12,7 +12,11 @@ sudo pacman -Syu
 # 여기에서 dependency가 AUR에 등록된 것이라면 수동으로 설치해줘야함
 
 # 모니터 gui 제어
-pacman -S arandr
+yes | sudo pacman -S arandr
+
+# vim
+mkdir -p ~/.vim/undodir
+# vimrc를 .vim 밑에 추가
 
 # 노트북 마우스 패드 속도
 xinput
@@ -29,7 +33,7 @@ yes | sudo pacman -S community/redshift
 redshift-gtk -t 4000:4000 -b 1.0:0.9
 
 # 키 반복입력 속도, 각각 반복 시작 딜레이, 속도
-xset r rate 280 30
+xset r rate 280 40
 
 # 배터리관리 gui
 yes | pamac install tlpui
@@ -46,7 +50,11 @@ install_pulse
 
 yes | sudo pacman -S git bash-completion
 
+# pacman x
 yes | sudo pacman -S uim
+git clone https://aur.archlinux.org/uim.git
+makepkg -si
+
 
 # 설치 후 추가 커맨드 필요!
 yes | sudo pacman -S community/libinput-gestures
@@ -160,4 +168,4 @@ parse_git_branch() {
 }
 
 ## throttling 방지
-sudo pacman -S community/throttled
+yes | sudo pacman -S community/throttled
