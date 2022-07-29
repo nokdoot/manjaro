@@ -11,55 +11,71 @@ sudo pacman -Syu
 # makepkg -si # 필요한 dependency 설치와 함께 해당 프로그램 설치
 # 여기에서 dependency가 AUR에 등록된 것이라면 수동으로 설치해줘야함
 
+echo "alias ll='ls -al'" >> ~/.bashrc
+
 # 모니터 gui 제어
 yes | sudo pacman -S arandr
 
 # vim
+yes | sudo pacman -S vim
 mkdir -p ~/.vim/undodir
+echo "alias vi=vim" >> ~/.bashrc
 # vimrc를 .vim 밑에 추가
 
 # 노트북 마우스 패드 속도
 xinput
 xinput --list-props 12
 xinput --set-prop 12 305 0.4
+echo "xinput --set-prop 12 318 0.4" >> ~/.bashrc
 
 yes | sudo pacman -S xclip
 yes | sudo pacman -S flameshot
 yes | sudo pacman -Rs palemoon-bin
+yes | sudo pacman -S firefox
+# about:config에서 
+layout.css.devPixelsPerPx 값을 1.4로 지정 (전체크기를 1.4배로 증가시킴)
+# 기본 브라우저 설정
+xdg-mime default firefox.desktop x-scheme-handler/https x-scheme-handler/http
+
 
 yes | sudo pacman -S community/redshift
 # redshift-gtk -> right click -> autostart
+# // reboot required
 # .config/autostart/redshift-gtk.desktop
 redshift-gtk -t 4000:4000 -b 1.0:0.9
 
 # 키 반복입력 속도, 각각 반복 시작 딜레이, 속도
-xset r rate 280 40
+echo "xset r rate 280 40" >> ~/.bashrc
 
 # 배터리관리 gui
-yes | pamac install tlpui
+yes | sudo pamac install tlpui
 
 # 노트북 뚜껑 닫을때 배터리 관리
 # sudo vi /etc/systemd/logind.conf
 # HandleLidSwitch= 값을 hibernate로 놓자
 
-yes | sudo pacman -S firefox
-# about:config에서 
-layout.css.devPixelsPerPx 값을 1.4로 지정 (전체크기를 1.4배로 증가시킴)
 
-install_pulse
+yes | install_pulse
 
 yes | sudo pacman -S git bash-completion
 
-# pacman x
-yes | sudo pacman -S uim
 git clone https://aur.archlinux.org/uim.git
-makepkg -si
+yes | makepkg -si
+// reboot required
 
 
 # 설치 후 추가 커맨드 필요!
 yes | sudo pacman -S community/libinput-gestures
+   sudo gpasswd -a $USER input
+   libinput-gestures-setup service
+   libinput-gestures-setup autostart
+// reboot required
+   libinput-gestures-setup start
 libinput-gestures-setup 으로 시작하는 명령어들 여기에 적어주자.
 
+갑자기 안되면 
+systemctl --user start libinput-gestures.service
+를 해보자...
 
 # gitk
 # tk 만 설치하면 gitk 는 알아서 추가되드라. 안되면 설치를 찾아보자. 
@@ -156,6 +172,8 @@ sudo pacman -U google-chrome*.tar.xz
 # branch name to terminal
 # .bashrc 파일의 PS1 환경변수에 다음을 추가.
 \[\033[33m\]$(parse_git_branch)\[\033[00m\]
+# 가장 최근은 $ 뒤에  '\[\033[33m\]$(parse_git_branch)' 를 추가해줬다...
+
 
 포맷전에는 
 PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \[\033[01;37m\]\w\[\033[01;32m\]]\[\033[33m\]$(parse_git_branch)\[\033[01;32m\]\$\[\033[00m\] '

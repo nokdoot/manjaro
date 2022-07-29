@@ -1,3 +1,7 @@
+
+
+
+
 ## mirror.archlinuxarm.org : The requested URL returned error: 404
 
 # db sync
@@ -51,6 +55,11 @@ nmcli device wifi connect <SSID> password <password>
 
 # 이제 재부팅해도 와이파이가능
 
+# root
+pacman -S sudo
+# visudo wheel 부분 주석 해제
+# ssh-keygen
+# ssh-copy-id 검색
 
 ## update
 pacman -Syu
