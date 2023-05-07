@@ -1,6 +1,25 @@
 "파일 위치 : ~/.vim/vimrc
 
+" syntax {{{
 syntax enable           " 문법 하이라이트 킴
+" }}}
+
+" {{{ let
+" 명령어 시작키 추가
+let mapleader = "-"
+
+" localleader 는 굳이 필요한가?
+let maplocalleader = "\\"
+
+" file explorer의 리스팅 방식설정
+let g:netrw_liststyle=3
+
+" file explorer의 크기 지정. 퍼센트값
+let g:netrw_winsize=35
+
+" file explorer에서 파일을 열 때 새탭으로 열게됨. :Lex를 중심으로 쓸거라 의미 없을듯
+" let g:netrw_browse_split=3
+" }}}
 
 " set {{{
 "자연스러운 위아래 커서이동
@@ -33,6 +52,7 @@ syntax enable           " 문법 하이라이트 킴
     set cursorline      " 현재 커서 위치를 표시
     set laststatus=2    " window 상태창 표시, 1 - window가 2개 이상일 경우 on. 0 - off
     set incsearch       " 단어 검색을 위해 타이핑 할때 하이라이팅
+    set nrformats=      " Vim treat all numerals as decimal. C-a, C-x 
 
 " 파일을 닫으면 undo 기록이 모두 사라지는데, 이를 관리하는 파일을 생성한다.
     set undofile
@@ -52,7 +72,8 @@ execute "set <M-7>=\e7"
 execute "set <M-8>=\e8"
 " }}}
 
-" alt - n {{{
+" noremap {{{
+" window change by alt - n {{{
     noremap <M-1> <esc>1gt
     noremap <M-2> <esc>2gt
     noremap <M-3> <esc>3gt
@@ -62,27 +83,16 @@ execute "set <M-8>=\e8"
     noremap <M-7> <esc>7gt
     noremap <M-8> <esc>8gt
 " }}}
-
-" 명령어 시작키 추가
-let mapleader = "-"
-
-" localleader 는 굳이 필요한가?
-let maplocalleader = "\\"
-
-" file explorer의 리스팅 방식설정
-let g:netrw_liststyle=3
-
-" file explorer의 크기 지정. 퍼센트값
-let g:netrw_winsize=35
-
-" file explorer에서 파일을 열 때 새탭으로 열게됨. :Lex를 중심으로 쓸거라 의미 없을듯
-" let g:netrw_browse_split=3
+" }}}
 
 " Vimscript file setting {{{
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+" }}}
+" inoremap {{{
+inoremap <S-Tab> <C-V><Tab>
 " }}}
 
 " nnoremap {{{
@@ -95,6 +105,7 @@ noremap <C-\>k :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 noremap <C-\>j :sp <CR>:exec("tag ".expand("<cword>"))<CR><C-W>r
 " }}}
 
+" edit vimrc {{{
 " -ev: edit vimrc
 " vimrc 수정
 nnoremap <leader>ev :vsp $MYVIMRC<cr>
@@ -102,6 +113,7 @@ nnoremap <leader>ev :vsp $MYVIMRC<cr>
 " -sv: source vimrc
 " vimrc 적용
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" }}}
 
 " templates {{{
 " <cr>podcode: enter pod code template
@@ -109,10 +121,17 @@ nnoremap <cr>podcode i=begin html<cr><cr><pre><code class=' hljs'><cr></code></p
 
 " <cr>pl: enter perl script template
 nnoremap <cr>pl i#!/usr/bin/env perl<cr><cr>use strict;<cr>use warnings;<cr>use feature qw/ say/;<cr><cr><esc>
-" }}}
 
 " <cr>perl: enter perl module template
 nnoremap <cr>pm i#!/usr/bin/env perl<cr><cr>use strict;<cr>use warnings;<cr>use feature qw/ say/;<cr><cr><esc>
+
+" }}}
+
+" comments {{{
+" 주석 / 해제
+noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> <leader>cx :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+" }}}
 
 " 보완필요 - 파일 시작과 끝부분에서 애매하게 동작
 " 행 위, 아래로 이동
@@ -152,16 +171,10 @@ nnoremap <space> viwh
 nnoremap <leader>w" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>w' viw<esc>a'<esc>hbi'<esc>lel
 
-" 주석 / 해제
-noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> <leader>cx :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " 책에서 나오는 :silent execute 를 사용했는데  slient (grep 의 결과를 보이지 않는 기능) 때문에
 " 몇몇 vim 출력이 사라지는 문제 때문에 제거함
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
-
-" }}}
-
 
 function! FoldColumnToggle()
     if &foldcolumn
@@ -172,17 +185,10 @@ function! FoldColumnToggle()
 endfunction
 
 
-" inoremap {{{
-
-" 한 줄 삭제
-inoremap <c-d> <esc>dd
-
-" }}}
-
 " autocmd {{{
 
 " autosave
-autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
+" autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
 " Commenting blocks of code. {{{
 autocmd FileType c,cpp,java,scala,js                let b:comment_leader = '// '
 autocmd FileType perl,sh,ruby,python,conf,fstab     let b:comment_leader = '# '
@@ -191,6 +197,7 @@ autocmd FileType tex                                let b:comment_leader = '% '
 autocmd FileType mail                               let b:comment_leader = '> '
 autocmd FileType vim                                let b:comment_leader = '" '
 " }}}
+
 
 " run script {{{
 autocmd FileType perl nnoremap <leader>rs :! perl %<cr>
