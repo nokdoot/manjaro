@@ -31,13 +31,16 @@ set $HOME ~
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-Font xft:URWGothic-Book 15
+font xft:URWGothic-Book 15
 
 # key repeat
 exec --no-startup-id xset r rate 250 100
 
+# fcitx5
+exec --no-startup-id fcitx5 -d
+
 # redshift
-exec --no-startup-id redshift-gtk -t 4600:4600 -l 37.51:127.06
+# exec --no-startup-id redshift-gtk -t 4600:4600 -l 37.51:127.06
 
 # libinput-gestures
 exec --no-startup-id libinput-gestures-setup start
@@ -46,8 +49,8 @@ exec --no-startup-id libinput-gestures-setup start
 # floating_modifier $mod
 
 # start a terminal
-bindsym Control+$mod+t exec termite
-bindsym Control+$mod+Return exec termite
+bindsym Control+$mod+t exec alacritty
+bindsym Control+$mod+Return exec alacritty
 
 # start firefox
 bindsym Control+$mod+f exec firefox
@@ -65,11 +68,16 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-###exec --no-startup-id volumeicon
-###bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#exec --no-startup-id volumeicon
+bindsym $mod+Ctrl+m exec alacritty -e 'alsamixer'
 exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
+# bindsym $mod+Ctrl+m exec pavucontrol
+
+# ####exec --no-startup-id volumeicon
+# ####bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+# exec --no-startup-id start-pulseaudio-x11
+# exec --no-startup-id pa-applet
 
 ################################################################################################
 
@@ -78,21 +86,14 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
 bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec pcmanfm
-bindsym Ctrl+$mod+e exec pcmanfm
+bindsym Ctrl+$mod+e exec thunar
 # bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-#bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 focus_follows_mouse no
 
@@ -160,11 +161,9 @@ bindsym $sup+minus scratchpad show
 #navigate workspaces next / previous
 bindsym Control+$mod+n exec --no-startup-id i3-new-workspace
 bindsym Control+$mod+l workspace next
-bindsym Control+$mod+Right workspace next
 bindsym $mod+Tab workspace next
 
 bindsym Control+$mod+h workspace prev
-bindsym Control+$mod+Left workspace prev
 bindsym $mod+Shift+Tab workspace prev
 
 # Workspace names
@@ -345,7 +344,7 @@ exec --no-startup-id flameshot
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+# exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
